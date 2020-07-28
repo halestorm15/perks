@@ -1,10 +1,12 @@
 const User = require ('../models').User;
-const points = require ('../models').points;
 const Company = require ('../models').Company;
 
 const getUserProfile = (req, res) => {
-    User.findByPk(req.user.id, {
+    User.findByPk(req.params.index, {
         attributes: ['id', 'name', 'username', 'profileurl', 'createdAt'],
+    })
+    .then(foundUser => {
+        res.json(foundUser)
     })
 }
 
@@ -15,7 +17,7 @@ const editProfile = (req, res) => {
     })
     .then(updateUser => {
         console.log(updateUser);
-        res.redirect(`/user/profile/${req.params.index}`);
+        res.json(updatedUser);
     })
 }
 

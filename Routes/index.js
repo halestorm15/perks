@@ -1,5 +1,6 @@
 module.exports = {
     user: require('./user'),
     company: require('./company'),
-    points: require('./points')
+    points: require('./points'),
+    auth: require('./auth')
 }

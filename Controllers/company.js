@@ -3,7 +3,7 @@ const points = require ('../models').points;
 
 
 const showCompany = (req, res) => {
-    User.findByPk(req.params.index, {
+    Company.findByPk(req.params.index, {
         include: [
             {
                 model: Company,
@@ -16,23 +16,19 @@ const showCompany = (req, res) => {
         ],
     })
     //is a ".then" piece needed?
+    //what is res.status?
 }
 
-const deleteCompany = (req, res) => {
-    //is destroy the correct command?
-    Company.destroy({
-        where: {
-            userId: req.params.index
-        }
+const showAllCompany = (req, res) => {
+    Company.findAll({
+        attributes: ['id', 'name', 'image']
     })
-    .then(() => {
-        //redirect back to the user's profile
-        res.redirect('/profile');
+    .then(allCompany => {
+      res.json(allCompany)
     })
 }
-
 
 module.exports = {
     showCompany,
-    deleteCompany,
+    showAllCompany
 }
