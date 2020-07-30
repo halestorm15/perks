@@ -42,11 +42,9 @@ const login = (req, res) => {
     console.log('hello casey + haley')
     User.findOne({
         where: {
-            username: req.body.username,
-            password: req.body.password
+            username: req.body.username
         }
     })
-
     .then(foundUser => {
         if(foundUser){
             console.log(foundUser)
@@ -73,6 +71,8 @@ const login = (req, res) => {
                 }
             })
         }
+    }).catch(err => {
+        console.log('something is wrong', err) 
     })
 }
 

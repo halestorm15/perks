@@ -20,13 +20,7 @@ app.get('/hello', (req, res) => {
 app.use('/main', routes.company);
 app.use('/points', routes.points);
 app.use('/auth', routes.auth);
-app.use('/auth/verify', verifyToken, routes.auth);
-app.use('/profile', verifyToken, routes.user);
 
-
-//does const need to be pulled at the top
-//does the heirachy of this page matter
-//does bodyParser.json need to be added, does line 2need to be changed or deleted?
 const verifyToken = (req, res, next) => {
     let token = req.query.token;
     
@@ -43,7 +37,8 @@ const verifyToken = (req, res, next) => {
     )
   }
   
-  
+  //dont move this app.us!
+app.use('/profile', routes.user);
 
 
 
