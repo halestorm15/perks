@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
 
 const signup = (req, res) => {
+    console.log('today is thursday')
     bcrypt.genSalt(10, (err, salt) => {
         if (err) return res.status(500).json(err);
         
@@ -38,6 +39,7 @@ const signup = (req, res) => {
 }
 
 const login = (req, res) => {
+    console.log('hello casey + haley')
     User.findOne({
         where: {
             username: req.body.username,
@@ -47,8 +49,10 @@ const login = (req, res) => {
 
     .then(foundUser => {
         if(foundUser){
+            console.log(foundUser)
             bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
                 if (match) {
+                    console.log('isha is a boss')
                     const token = jwt.sign(
                         {
                           username: foundUser.username,
@@ -59,7 +63,11 @@ const login = (req, res) => {
                           expiresIn: "30 days"
                         },
                     )
-                    res.json(foundUser);
+                    console.log(token)
+                    res.json( {
+                        token: token,
+                        user: foundUser
+                    });
                 } else {
                   return res.sendStatus(400);
                 }
@@ -68,7 +76,20 @@ const login = (req, res) => {
     })
 }
 
+const verifyUser = (req, res) => {
+    User.findByPk(req.user.id, {
+        attributes: ['id', 'username', 'name', 'profilurl']
+    })
+    .then(foundUser => {
+        res.json(foundUser);
+    })
+    .catch(err => {
+        res.send(`ERROR: ${err}`);
+    }) 
+}
+
 module.exports = {
     signup,
-    login
+    login,
+    verifyUser
 }

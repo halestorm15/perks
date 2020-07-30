@@ -28,7 +28,7 @@ const addCompany = (req, res) => {
       company.update({UserId: req.params.index})
       .then(addCompany => {
           //is this redirect needed here or handle in react?
-          res.redirect(`/user/profile/${req.params.index}`);
+          res.redirect(`/user/${req.params.index}`);
       })
     })
 }

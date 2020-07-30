@@ -7,13 +7,10 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const routes = require('./routes');
 
-
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-
-
 
 app.get('/hello', (req, res) => {
     console.log('i am working')
@@ -21,9 +18,11 @@ app.get('/hello', (req, res) => {
 })
 
 app.use('/main', routes.company);
-app.use('/profile', routes.user);
-app.use('/main', routes.points);
+app.use('/points', routes.points);
 app.use('/auth', routes.auth);
+app.use('/auth/verify', verifyToken, routes.auth);
+app.use('/profile', verifyToken, routes.user);
+
 
 //does const need to be pulled at the top
 //does the heirachy of this page matter
@@ -44,7 +43,7 @@ const verifyToken = (req, res, next) => {
     )
   }
   
-  app.use('/users', verifyToken, routes.users);
+  
 
 
 
