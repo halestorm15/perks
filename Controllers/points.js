@@ -11,6 +11,18 @@ const editPoints = (req, res) => {
     })
 }
 
+const addProgram = (req, res) => {
+    req.body.userId = req.user.id;
+    req.body.companyId = req.params.company;
+
+    points.create(req.body)
+    .then(addProgram => {
+        res.json(addProgram)
+    }).catch(err => {
+        res.send(`Error: ${err}`);
+    })
+}
+
 const deleteProgram = (req, res) => {
     points.destroy({
         where: { 
@@ -27,7 +39,8 @@ const deleteProgram = (req, res) => {
 
 module.exports = {
     editPoints,
-    deleteProgram
+    deleteProgram,
+    addProgram
 }
 
 
