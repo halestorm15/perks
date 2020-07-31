@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   points.init({
-    userId: DataTypes.INTEGER,
-    companyId: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
+    CompanyId: DataTypes.INTEGER,
     points: DataTypes.INTEGER
   }, {
     sequelize,

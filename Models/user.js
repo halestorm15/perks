@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.association = this.belongsToMany(models.Company, { 
         through: 'points',
-        foreignKey: 'userId',
-        otherKey: 'companyId'
+        foreignKey: 'UserId',
+        otherKey: 'CompanyId'
       });
     }
   };

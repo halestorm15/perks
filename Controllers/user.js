@@ -23,17 +23,17 @@ const editProfile = (req, res) => {
     })
 }
 
-const addCompany = (req, res) => {
-    req.body.UserId = req.params.index;
-    Company.findByPk(req.params.companyIndex)
-    .then(company => {
-      company.update({UserId: req.params.index})
-      .then(addCompany => {
-          //is this redirect needed here or handle in react?
-          res.redirect(`/user/ ${req.params.index}`);
-      })
-    })
-}
+// const addCompany = (req, res) => {
+//     req.body.UserId = req.params.index;
+//     Company.findByPk(req.params.companyIndex)
+//     .then(company => {
+//       company.update({UserId: req.params.index})
+//       .then(addCompany => {
+//           //is this redirect needed here or handle in react?
+//           res.redirect(`/user/ ${req.params.index}`);
+//       })
+//     })
+// }
 const deleteUser = (req, res) => {
     User.destroy({
         where: {
@@ -48,6 +48,6 @@ const deleteUser = (req, res) => {
 module.exports = {
     getUserProfile,
     editProfile,
-    addCompany,
+    // addCompany,
     deleteUser
 }

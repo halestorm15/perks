@@ -12,9 +12,7 @@ const editPoints = (req, res) => {
 }
 
 const addProgram = (req, res) => {
-    req.body.userId = req.user.id;
-    req.body.companyId = req.params.company;
-
+    console.log(req.body)
     points.create(req.body)
     .then(addProgram => {
         res.json(addProgram)
@@ -26,8 +24,8 @@ const addProgram = (req, res) => {
 const deleteProgram = (req, res) => {
     points.destroy({
         where: { 
-            userId: req.params.userId,
-            companyId: req.params.companyId
+            UserId: req.params.userId,
+            CompanyId: req.params.companyId
         }         
     })
     .then(deletedProgram => {

@@ -11,7 +11,7 @@ const showCompany = (req, res) => {
             },
             {
                 model: points,
-                attributes: ['id', 'userId', 'companyId', 'points']
+                attributes: ['id', 'UserId', 'CompanyId', 'points']
             }
         ],
     })
